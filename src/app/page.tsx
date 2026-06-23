@@ -6,6 +6,7 @@ import { Search, Zap, ZapOff, Clock, AlertTriangle, Loader2, MapPin } from "luci
 import type { AreaScheduleResponse } from "@/lib/eskomsepush";
 import DevicePanel from "@/components/DevicePanel";
 import RecommendPanel from "@/components/RecommendPanel";
+import PowerChart from "@/components/PowerChart";
 
 export default function Home() {
   const [suburb, setSuburb] = useState("");
@@ -297,6 +298,7 @@ export default function Home() {
             </p>
           </div>
           <DevicePanel />
+          <PowerChart />
           <RecommendPanel suburb={suburb || "Cape Town"} schedule={schedule as Record<string, unknown> | null} devices={[
             {name:"Geyser",wattage:3000,status:"on"},
             {name:"Washing Machine",wattage:2200,status:"off"},
