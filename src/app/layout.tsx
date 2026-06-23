@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -13,6 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  icons: { icon: "/favicon.svg" },
   title: "WattWise AI — Smart Load-Shedding Intelligence",
   description:
     "AI-powered energy management for South African load-shedding. Check your suburb's schedule, monitor simulated IoT devices, and get smart recommendations.",
