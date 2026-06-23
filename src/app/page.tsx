@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Search, Zap, ZapOff, Clock, AlertTriangle, Loader2, MapPin } from "lucide-react";
 import type { AreaScheduleResponse } from "@/lib/eskomsepush";
+import DevicePanel from "@/components/DevicePanel";
 
 export default function Home() {
   const [suburb, setSuburb] = useState("");
@@ -283,6 +284,19 @@ export default function Home() {
             </p>
           </div>
         )}
+
+        {/* ── Device Panel ──────────────────────────────────────────────── */}
+        <section className="mt-16">
+          <div className="mb-6">
+            <h2 className="mb-1 text-xl font-bold tracking-tight">
+              IoT Device Dashboard
+            </h2>
+            <p className="text-sm text-white/50">
+              Live simulated readings from your household devices.
+            </p>
+          </div>
+          <DevicePanel />
+        </section>
       </main>
     </div>
   );
