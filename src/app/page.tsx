@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Search, Zap, ZapOff, Clock, AlertTriangle, Loader2, MapPin } from "lucide-react";
 import type { AreaScheduleResponse } from "@/lib/eskomsepush";
 import DevicePanel from "@/components/DevicePanel";
+import RecommendPanel from "@/components/RecommendPanel";
 
 export default function Home() {
   const [suburb, setSuburb] = useState("");
@@ -296,6 +297,15 @@ export default function Home() {
             </p>
           </div>
           <DevicePanel />
+          <RecommendPanel suburb={suburb || "Cape Town"} schedule={schedule as Record<string, unknown> | null} devices={[
+            {name:"Geyser",wattage:3000,status:"on"},
+            {name:"Washing Machine",wattage:2200,status:"off"},
+            {name:"Fridge",wattage:150,status:"on"},
+            {name:"Laptop Charger",wattage:65,status:"on"},
+            {name:"Solar Inverter",wattage:800,status:"on"},
+            {name:"Battery Backup",wattage:500,status:"on"},
+            {name:"TV",wattage:120,status:"off"}
+          ]} />
         </section>
       </main>
     </div>

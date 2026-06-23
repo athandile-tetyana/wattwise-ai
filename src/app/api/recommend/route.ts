@@ -56,12 +56,9 @@ export async function POST(request: NextRequest) {
     const body: RecommendRequest = await request.json();
     const { suburb, schedule, devices } = body;
 
-    if (!suburb || !schedule || !devices) {
-      return NextResponse.json(
-        { error: "Missing required fields: suburb, schedule, devices" },
-        { status: 400 }
-      );
-    }
+    const safeSuburb = suburb || "Cape Town";
+    const safeSchedule = schedule || { status: "Stage 2", events: [] };
+    const safeDevices = devices || [];
 
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
@@ -71,7 +68,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const prompt = buildPrompt(suburb, schedule, devices);
+    const prompt = buildPrompt(safeSuburb, safeSchedule, safeDevices);
 
     const geminiRes = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
       method: "POST",
@@ -121,7 +118,7 @@ export async function POST(request: NextRequest) {
     const { error: logError } = await supabase
       .from("recommendations_log")
       .insert({
-        suburb,
+        suburb: safeSuburb,
         recommendations,
         devices_snapshot: devices,
         schedule_snapshot: schedule,
